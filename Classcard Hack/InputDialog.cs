@@ -23,10 +23,10 @@ namespace Classcard_Hack
             {
                 e.Handled = true;
             }
-            else if (e.KeyChar == (char)Keys.Return) 
-            { 
+            else if (e.KeyChar == (char)Keys.Return)
+            {
                 e.Handled = true;
-                this.Close(); 
+                this.Close();
             }
         }
 
