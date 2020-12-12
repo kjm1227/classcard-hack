@@ -64,32 +64,32 @@ namespace Classcard_Hack
                 if (e.Message.Contains("setAnswer"))
                 {
                     string script = @"
-					(function() {
-						var result = new Array();
-						var questions = document.querySelectorAll('.flip-card-back');
-						questions.forEach((question, idx) => {
-							var objective = question.querySelector('.cc-radio-box-body');
-							var subjective = question.querySelector('.subject-input');
-							var answer = question.querySelector('.answer-body');
-							if (objective) {
-								var choices = question.querySelectorAll('.cc-radio-box');
-								var answerText = answer.querySelector('.text-success').innerText;
-								if (answerText) {
-									choices.forEach(choice => {
-										if (choice.querySelector('.cc-table>div').innerText == answerText)
-											result[idx] = choice.querySelector('input').value;
-									});
-								}
-								else result[idx] = null;
-							}
-							else if (subjective) {
-								var answerText = answer.querySelector('.text-success').innerText;
-								if (answerText) result[idx] = answerText;
-								else result[idx] = null;
-							}
-						});
-						return JSON.stringify(result);
-					})();";
+                    (function() {
+                        var result = new Array();
+                        var questions = document.querySelectorAll('.flip-card-back');
+                        questions.forEach((question, idx) => {
+                            var objective = question.querySelector('.cc-radio-box-body');
+                            var subjective = question.querySelector('.subject-input');
+                            var answer = question.querySelector('.answer-body');
+                            if (objective) {
+                                var choices = question.querySelectorAll('.cc-radio-box');
+                                var answerText = answer.querySelector('.text-success').innerText;
+                                if (answerText) {
+                                    choices.forEach(choice => {
+                                        if (choice.querySelector('.cc-table>div').innerText == answerText)
+                                            result[idx] = choice.querySelector('input').value;
+                                    });
+                                }
+                                else result[idx] = null;
+                            }
+                            else if (subjective) {
+                                var answerText = answer.querySelector('.text-success').innerText;
+                                if (answerText) result[idx] = answerText;
+                                else result[idx] = null;
+                            }
+                        });
+                        return JSON.stringify(result);
+                    })();";
 
                     chromiumBrowser.EvaluateScriptAsync(script).ContinueWith(x =>
                     {
